@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+C:\Users\DonUkson\Documents\CRUD\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3835824610.index
+3732797112.index
+1239575.index
+2731877194.index
+2896020205.index
+2557698432.index

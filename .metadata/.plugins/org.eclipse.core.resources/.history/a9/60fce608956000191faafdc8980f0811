@@ -1,0 +1,5 @@
+package pl.widawski.emp;
+
+public class Employee {
+
+}

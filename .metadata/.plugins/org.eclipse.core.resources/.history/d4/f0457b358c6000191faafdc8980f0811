@@ -1,0 +1,7 @@
+package pl.widawski.Listeners;
+
+import javax.servlet.ServletContextListener;
+
+public class ContextListener implements ServletContextListener {
+
+}

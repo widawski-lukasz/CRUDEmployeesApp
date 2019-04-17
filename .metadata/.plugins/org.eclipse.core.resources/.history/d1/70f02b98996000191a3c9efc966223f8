@@ -1,0 +1,7 @@
+package pl.widawski.emp;
+
+import java.io.Serializable;
+
+public class Employee implements Serializable {
+	
+}
