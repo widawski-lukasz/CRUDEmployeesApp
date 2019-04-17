@@ -1,0 +1,45 @@
+package pl.widawski.servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import pl.widawski.dao.EmployeeDAO;
+import pl.widawski.emp.Employee;
+
+public class ViewServlet extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		res.setContentType("text/html; charset=utf-8");
+		
+		
+		PrintWriter pw = res.getWriter();
+		pw.println("<h1>Employees List</h1>");
+		pw.println("<html><head><title>Employees List</title></head>");
+		pw.println("<body>");
+		pw.println("<form method=\"post\">");
+	
+		pw.println("</form>");
+		pw.println("</body></html>");
+		
+		EmployeeDAO dao = new EmployeeDAO();
+		List<Employee> empsList = dao.getEmps();
+		for (Employee loop : empsList) {
+			res.getWriter().println(loop.getFirstName());
+		}
+		
+		List<Employee> testList = dao.getTest();
+		for (Employee loop : testList) {
+			res.getWriter().println("A tutaj test:");
+			res.getWriter().println(loop.getFirstName());
+		}
+	}
+}

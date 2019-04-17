@@ -17,7 +17,18 @@
   	<servlet-name>SaveServlet</servlet-name>
   	<url-pattern>/save</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>ViewServlet</servlet-name>
+  	<servlet-class>pl.widawski.servlets.ViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ViewServlet</servlet-name>
+  	<url-pattern>/view</url-pattern>
+  </servlet-mapping>	
   <listener>
-  <listener-class>pl.widawski.Listeners.ContextListener</listener-class>
+  	<listener-class>pl.widawski.Listeners.ContextListener</listener-class>
+  </listener>
+  <listener>
+  	<listener-class>pl.widawski.dao.DBConfig</listener-class>
   </listener>
 </web-app>
