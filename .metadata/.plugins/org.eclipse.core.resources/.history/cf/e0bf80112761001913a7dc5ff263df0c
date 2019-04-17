@@ -1,0 +1,37 @@
+package pl.widawski.servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import pl.widawski.dao.EmployeeDAO;
+import pl.widawski.emp.Employee;
+
+public class ViewServlet extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		res.setContentType("text/html; charset=utf-8");
+		
+		
+		PrintWriter pw = res.getWriter();
+		pw.println("<h1>Employees List</h1>");
+		pw.println("<html><head><title>Employees List</title></head>");
+		pw.println("<body>");
+		pw.println("<tr><td><a href='index.jsp'><input type='button' value='Main page' /></a></td></tr>");
+		EmployeeDAO dao = new EmployeeDAO();
+		List<Employee> empsList = dao.getEmps();
+		pw.print("<table border='1' wodth='100%'");
+		pw.print("<tr><th>id</th><th>First Name</th><th>Last Name</th><th>Country</th><th>Email</th><th>Edit</th><th>Delete</th>");
+		for(Employee loop : empsList) {
+			pw.println("<tr><td>"+loop.getId()+"</td><td>"+loop.getFirstName()+"</td><td>"+loop.getLastName()+"</td><td>"+loop.getCountry()+"</td><td>"+loop.getEmail()+"</td><td>Edit</td><td><a href='DeleteServlet?id="+loop.getId()+"'>delete</a></td></tr>");
+		}
+		pw.print("</table>");
+		pw.println("</body></html>");
+		
+		
+	}
+}

@@ -25,6 +25,15 @@
   	<servlet-name>ViewServlet</servlet-name>
   	<url-pattern>/view</url-pattern>
   </servlet-mapping>	
+   <servlet>
+	<servlet-name>DeleteServlet</servlet-name>
+	<servlet-class>pl.widawski.servlets.DeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteServlet</servlet-name>
+  	<url-pattern>/delete</url-pattern>
+  </servlet-mapping>
+  
   <listener>
   	<listener-class>pl.widawski.Listeners.ContextListener</listener-class>
   </listener>

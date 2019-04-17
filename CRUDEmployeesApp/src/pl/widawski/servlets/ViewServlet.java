@@ -4,10 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +27,7 @@ public class ViewServlet extends HttpServlet {
 		pw.print("<table border='1' wodth='100%'");
 		pw.print("<tr><th>id</th><th>First Name</th><th>Last Name</th><th>Country</th><th>Email</th><th>Edit</th><th>Delete</th>");
 		for(Employee loop : empsList) {
-			pw.println("<tr><th>"+loop.getId()+"</th><th>"+loop.getFirstName()+"</th><th>"+loop.getLastName()+"</th><th>"+loop.getCountry()+"</th><th>"+loop.getEmail()+"</th><th>Edit</th><th>Delete</th>");
+			pw.println("<tr><td>"+loop.getId()+"</td><td>"+loop.getFirstName()+"</td><td>"+loop.getLastName()+"</td><td>"+loop.getCountry()+"</td><td>"+loop.getEmail()+"</td><td>Edit</td><td><a href='delete?id="+loop.getId()+"'>delete</a></td></tr>");
 		}
 		pw.print("</table>");
 		pw.println("</body></html>");
