@@ -25,7 +25,7 @@ public class EditServlet extends HttpServlet {
 		EmployeeDAO dao = new EmployeeDAO();
 		Employee e = dao.getEmployee(id);
 		
-		pw.print("<form action='update' method='post'>");
+		pw.print("<form action='update' method='get'>");
 		pw.print("<table>");
 		pw.print("<tr><td></td><td><input type='hidden' name='id' value='"+e.getId()+"'/></td></tr>");  
 		pw.print("<tr><td>First name:</td><td><input type='text' name='fname' value='"+e.getFirstName()+"'/></td></tr>");

@@ -2,29 +2,21 @@ package pl.widawski.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pl.widawski.dao.DBConfig;
 import pl.widawski.dao.EmployeeDAO;
 import pl.widawski.emp.Employee;
-public class SaveServlet extends HttpServlet {
+
+public class UpdateServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		res.setContentType("text/html; charset=utf-8");
-		EntityManager em = DBConfig.getEntityManagerFactory().createEntityManager();
-		EntityTransaction et = em.getTransaction();
 		PrintWriter pw = res.getWriter();
 		EmployeeDAO dao = new EmployeeDAO();
-		
 		Employee emp = new Employee();
+		
 		String stringId = req.getParameter("id");
 		int id = Integer.parseInt(stringId);
 		emp.setId(id);
@@ -34,27 +26,11 @@ public class SaveServlet extends HttpServlet {
 		emp.setEmail( req.getParameter("email"));
 		
 		
-		dao.saveEmp(emp);
+		dao.update(emp);
 		
 		
+		res.sendRedirect("view");
 		
-//		try {
-//			et.begin();
-//			Employee em3 = new Employee();
-//			em3.setCountry("POLAND");
-//			em3.setEmail("piotr@o2.pl");
-//			em3.setFirstName("Piotr");
-//			em3.setLastName("Nowak");
-//			
-//			
-//			em.persist(em3);
-//			et.commit();
-//		} catch (Exception e) {
-//			if (et.isActive())
-//				et.rollback();
-//		}
-//		
 		
 	}
-	
 }

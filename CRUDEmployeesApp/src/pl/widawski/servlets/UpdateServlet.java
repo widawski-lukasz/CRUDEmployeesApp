@@ -11,7 +11,7 @@ import pl.widawski.emp.Employee;
 
 public class UpdateServlet extends HttpServlet {
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		res.setContentType("text/html; charset=utf-8");
 		PrintWriter pw = res.getWriter();
 		EmployeeDAO dao = new EmployeeDAO();

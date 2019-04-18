@@ -9,15 +9,16 @@ CRUD application based on servlets, connected with mySQL base.
 
 Main page. Fill fields to add new Employee:
 
-![alt text](https://github.com/widawski-lukasz/CRUDEmployeesApp/tree/master/crudImages/save.JPG)
+![alt text](https://github.com/widawski-lukasz/CRUDEmployeesApp/blob/master/crudImages/save.JPG)
 
-![alt text](https://github.com/widawski-lukasz/CRUDEmployeesApp/tree/master/crudImages/adding.JPG)
+
+![alt text](https://github.com/widawski-lukasz/CRUDEmployeesApp/blob/master/crudImages/adding.JPG)
 
 Click Show table button, to see the eemployees list
 
-![alt text](https://github.com/widawski-lukasz/CRUDEmployeesApp/tree/master/crudImages/list.JPG)
+![alt text](https://github.com/widawski-lukasz/CRUDEmployeesApp/blob/master/crudImages/list.JPG)
 
 Clicl edit to change data of choosen Employee
 
-![alt text](https://github.com/widawski-lukasz/CRUDEmployeesApp/tree/master/crudImages/edit.JPG)
+![alt text](https://github.com/widawski-lukasz/CRUDEmployeesApp/blob/master/crudImages/edit.JPG)
 
