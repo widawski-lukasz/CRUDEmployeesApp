@@ -43,7 +43,6 @@ INDEX VERSION 1.131+C:\Users\DonUkson\Documents\CRUD\.metadata\.plugins\org.ecli
 3238093814.index
 2790514380.index
 3796110132.index
-1628484854.index
 235769178.index
 1467620130.index
 1716644663.index

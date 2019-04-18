@@ -27,7 +27,7 @@ public class ViewServlet extends HttpServlet {
 		pw.print("<table border='1' wodth='100%'");
 		pw.print("<tr><th>id</th><th>First Name</th><th>Last Name</th><th>Country</th><th>Email</th><th>Edit</th><th>Delete</th>");
 		for(Employee loop : empsList) {
-			pw.println("<tr><td>"+loop.getId()+"</td><td>"+loop.getFirstName()+"</td><td>"+loop.getLastName()+"</td><td>"+loop.getCountry()+"</td><td>"+loop.getEmail()+"</td><td>Edit</td><td><a href='delete?id="+loop.getId()+"'>delete</a></td></tr>");
+			pw.println("<tr><td>"+loop.getId()+"</td><td>"+loop.getFirstName()+"</td><td>"+loop.getLastName()+"</td><td>"+loop.getCountry()+"</td><td>"+loop.getEmail()+"</td><td><a href='edit?id="+loop.getId()+"'>edit</a></td><td><a href='delete?id="+loop.getId()+"'>delete</a></td></tr>");
 		}
 		pw.print("</table>");
 		pw.println("</body></html>");

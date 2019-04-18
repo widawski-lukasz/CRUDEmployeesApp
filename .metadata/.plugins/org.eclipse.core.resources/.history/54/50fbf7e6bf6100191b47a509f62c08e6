@@ -1,0 +1,46 @@
+package pl.widawski.servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import pl.widawski.dao.EmployeeDAO;
+import pl.widawski.emp.Employee;
+
+public class UpdateServlet extends HttpServlet {
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		res.setContentType("text/html; charset=utf-8");
+		PrintWriter pw = res.getWriter();
+		EmployeeDAO dao = new EmployeeDAO();
+		Employee emp = new Employee();
+		
+		String stringId = req.getParameter("id");
+		int id = Integer.parseInt(stringId);
+		String fname = req.getParameter("fname");
+		String lname = req.getParameter("lname");
+		String email = req.getParameter("email");
+		String country = req.getParameter("country");
+		System.out.println(country);
+		System.out.println(fname);
+		System.out.println(id);
+		System.out.println(email);
+		System.out.println(lname);
+		
+		
+		emp.setFirstName(fname);
+		System.out.println(emp.getFirstName());
+		
+		dao.update(emp);
+		
+		
+		String deletedCom = ("User with id: " + dao.deleteEmp(id) + " updated.");
+		System.out.println(deletedCom);
+		
+		res.sendRedirect("view");
+		
+		
+	}
+}
