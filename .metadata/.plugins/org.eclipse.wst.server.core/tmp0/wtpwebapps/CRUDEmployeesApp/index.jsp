@@ -11,9 +11,9 @@
 <form action="save" method="post">
 <table>
 <tr><td>First name:</td><td><input type="text" name="namein"/></td></tr>
-<tr><td>Last name:</td><td><input type="text" name="lnamein"/></td></tr>
+<tr><td>Last name:</td><td><input type="text" name= "lnamein"/></td></tr>
 <tr><td>Email:</td><td><input type="text" name="emailin" /></td></tr>
-<tr><td>Country:</td><td><select name="Country" style="width:150px">
+<tr><td>Country:</td><td><select name="countryin" style="width:150px">
 <option>POLAND</option>
 <option>USA</option>
 <option>GERMANY</option>

@@ -1,0 +1,83 @@
+package pl.widawski.servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import pl.widawski.dao.DBConfig;
+import pl.widawski.dao.EmployeeDAO;
+import pl.widawski.emp.Employee;
+public class SaveServlet extends HttpServlet {
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		res.setContentType("text/html; charset=utf-8");
+		EntityManager em = DBConfig.getEntityManagerFactory().createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		PrintWriter pw = res.getWriter();
+		EmployeeDAO dao = new EmployeeDAO();
+		Employee emp = new Employee();
+		
+		try {
+			et.begin();
+			Employee em3 = new Employee();
+			em3.setCountry("POLAND");
+			em3.setEmail("piotr@o2.pl");
+			em3.setFirstName("Piotr");
+			emp.setFirstName(req.getParameter("namein"));
+			emp.setLastName(req.getParameter("lnamein"));
+			emp.setEmail(req.getParameter("emailin"));
+			emp.setCountry( req.getParameter("countryin"));
+			System.out.println(emp.getFirstName());
+			System.out.println(emp.getEmail());
+			System.out.println(emp.getLastName());
+			
+			em.persist(emp);
+			et.commit();
+		} catch (Exception e) {
+			if (et.isActive())
+				et.rollback();
+		}
+		req.getRequestDispatcher("index.jsp").include(req, res);
+		
+	}
+}
+//		try {
+//			emp.setFirstName(req.getParameter("namiein"));
+//			emp.setLastName(req.getParameter("lnamiein"));
+//			emp.setEmail(req.getParameter("emailin"));
+//			emp.setCountry( req.getParameter("countryin"));
+//			String name = req.getParameter("namiein");
+//			System.out.println(name);
+//			
+//		    req.getRequestDispatcher("index.jsp").include(req, res);  
+//		    pw.close();
+//		} catch (Exception e) {
+//			if (et.isActive())
+//		et.rollback();
+//	}
+//		
+//		dao.saveEmp(emp);
+		
+
+//		try {
+//			et.begin();
+//			Employee em3 = new Employee();
+//			em3.setCountry("POLAND");
+//			em3.setEmail("piotr@o2.pl");
+//			em3.setFirstName("Piotr");
+//			em3.setLastName("Nowak");
+//			
+//			
+//			em.persist(em3);
+//			et.commit();
+//		} catch (Exception e) {
+//			if (et.isActive())
+//				et.rollback();
+//		}
+//		

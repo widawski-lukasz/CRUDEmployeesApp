@@ -1,7 +1,0 @@
-package pl.widawski.servlets;
-
-import javax.servlet.http.HttpServlet;
-
-public class SaveServlet extends HttpServlet {
-
-}

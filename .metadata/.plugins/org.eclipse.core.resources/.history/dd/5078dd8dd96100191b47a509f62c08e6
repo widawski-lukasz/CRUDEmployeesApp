@@ -1,0 +1,126 @@
+package pl.widawski.dao;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import pl.widawski.emp.Employee;
+
+public class EmployeeDAO {
+	private EntityManager em;
+	private EntityTransaction et;
+	public EmployeeDAO(){
+		this.em = DBConfig.getEntityManagerFactory().createEntityManager();
+		this.et = em.getTransaction();
+	}
+	public List<Employee> getEmps() {
+		List<Employee> empsList = em.createQuery("Select e from Employee e").getResultList();
+		return empsList;
+	}
+	public int deleteEmp(int id) {
+		et.begin();
+		try {
+			int flag= id;
+			em.createQuery("delete from Employee WHERE id="+flag).executeUpdate();
+			et.commit();
+		}catch(Throwable t) {
+				et.rollback();
+		}
+		return id;
+	}
+	public Employee getEmployee(int id) {
+		Employee eUpdate = new Employee();
+		try {
+			int flag = id;
+			List<Employee> empL = em.createQuery("select e FROM Employee e where id="+flag).getResultList();
+			eUpdate.setId(empL.get(0).getId());
+			eUpdate.setFirstName(empL.get(0).getFirstName());
+			eUpdate.setLastName(empL.get(0).getLastName());
+			eUpdate.setCountry(empL.get(0).getCountry());
+			eUpdate.setEmail(empL.get(0).getEmail());
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return eUpdate;
+	}
+	
+	public int update(Employee emp) {
+		int flag = emp.getId();
+		et.begin();
+		try {
+			em.createQuery("UPDATE Employee e set e.email='"+emp.getEmail()+"',e.country='"+emp.getCountry()+"',e.firstName='"+emp.getFirstName()+"',e.lastName='"+emp.getLastName()+"' where e.id ="+flag).executeUpdate();
+			System.out.println("done");
+			//em.merge(emp);
+			et.commit();
+		}catch(Throwable t) {
+				et.rollback();
+		}
+		return flag;
+	}
+	public int saveEmp(Employee emp) {
+		et.begin();
+		int flag = emp.getId();
+		try {	
+			//em.persist(emp);
+			em.createQuery("insert into Employee e(email,country,firstName,lastName) values (e.email='"+emp.getEmail()+"',e.country='"+emp.getCountry()+"',e.firstName='"+emp.getFirstName()+"',e.lastName='"+emp.getLastName()).executeUpdate();
+			System.out.println("done");
+			et.commit();
+		}catch(Throwable t) {
+				et.rollback();
+		}
+		return flag;
+	}
+	
+	
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		res.setContentType("text/html; charset=utf-8");
+
+		
+		try {
+			et.begin();
+			Employee em3 = new Employee();
+			em3.setCountry("POLAND");
+			em3.setEmail("piotr@o2.pl");
+			em3.setFirstName("Piotr");
+			em3.setLastName("Nowak");
+			
+			
+			em.persist(em3);
+			et.commit();
+		} catch (Exception e) {
+			if (et.isActive())
+				et.rollback();
+		}
+		
+		
+		
+		Employee em1 = em.find(Employee.class, 1);
+		res.getWriter().println(em1.getFirstName() + " " + em1.getLastName());
+		em.close();
+	
+		
+		
+		EmployeeDAO dao = new EmployeeDAO();
+		List<Employee> empsList = dao.getEmps();
+		for (Employee loop : empsList) {
+			res.getWriter().println(loop.getFirstName());
+		}
+
+		
+		
+		
+//		PrintWriter pw = res.getWriter();
+		
+//		pw.println("<html><head><title>CRUD Employees App</title></head>");
+//		pw.println("<body>");
+//		pw.println("<form method=\"post\">");
+//		pw.println("<p>Podaj</p><input name=\"name\" /><input type=\"submit\" value=\"OK\" />");
+//		pw.println("</form>");
+//		pw.println("</body></html>");
+	}
+}

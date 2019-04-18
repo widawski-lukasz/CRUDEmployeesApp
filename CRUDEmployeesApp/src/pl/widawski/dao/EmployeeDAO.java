@@ -17,10 +17,7 @@ public class EmployeeDAO {
 		List<Employee> empsList = em.createQuery("Select e from Employee e").getResultList();
 		return empsList;
 	}
-	public List<Employee> getTest() {
-		List<Employee> empsList = em.createQuery("Select loop from Employee loop WHERE firstName='Tomek'").getResultList();
-		return empsList;
-	}
+	
 	public int deleteEmp(int id) {
 		et.begin();
 		try {
@@ -32,6 +29,7 @@ public class EmployeeDAO {
 		}
 		return id;
 	}
+	
 	public Employee getEmployee(int id) {
 		Employee eUpdate = new Employee();
 		try {
@@ -52,7 +50,6 @@ public class EmployeeDAO {
 		int flag = emp.getId();
 		et.begin();
 		try {
-			String mail = emp.getEmail();
 			em.createQuery("UPDATE Employee e set e.email='"+emp.getEmail()+"',e.country='"+emp.getCountry()+"',e.firstName='"+emp.getFirstName()+"',e.lastName='"+emp.getLastName()+"' where e.id ="+flag).executeUpdate();
 			System.out.println("done");
 			//em.merge(emp);
@@ -62,4 +59,20 @@ public class EmployeeDAO {
 		}
 		return flag;
 	}
+	
+	public String saveEmp(Employee emp) {
+		et.begin();
+		String done = "";
+		try {	
+			em.persist(emp);
+			et.commit();
+			done = "Employee: "+ emp.getFirstName()+" "+ emp.getLastName()+ " added.";
+			System.out.println(done);
+		}catch(Throwable t) {
+				et.rollback();
+		}
+		return done;
+	}
+
+	
 }
